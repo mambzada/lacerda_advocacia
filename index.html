@@ -1,0 +1,663 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Lacerda Advocacia</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Manrope:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: identidade extraída da referência — fundo pedra, dourado de destaque, marinho nos botões e rodapé; coluna de 1200px */
+:root{
+  --bg:#ECE9E4; --bg-2:#E3DFD8; --surface:#FFFFFF; --field:#F4F2EE;
+  --ink:#1E2430; --muted:#565A62; --line:#D8D2C8;
+  --gold:#C8A35A; --gold-ink:#8A6B2E; --navy:#232B38; --on-navy:#FFFFFF; --on-navy-muted:#AEB4BE;
+  --shadow:0 18px 40px -28px rgba(30,36,48,.45);
+  --serif:"Playfair Display", Georgia, "Times New Roman", serif;
+  --sans:"Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#13171E; --bg-2:#181D25; --surface:#1D232D; --field:#151A21;
+  --ink:#ECE9E4; --muted:#A4A9B1; --line:#2B323D;
+  --gold:#D4B26C; --gold-ink:#D9B976; --navy:#0D1117; --on-navy:#ECE9E4; --on-navy-muted:#8E96A2;
+  --shadow:0 18px 40px -24px rgba(0,0,0,.7); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#13171E; --bg-2:#181D25; --surface:#1D232D; --field:#151A21;
+  --ink:#ECE9E4; --muted:#A4A9B1; --line:#2B323D;
+  --gold:#D4B26C; --gold-ink:#D9B976; --navy:#0D1117; --on-navy:#ECE9E4; --on-navy-muted:#8E96A2;
+  --shadow:0 18px 40px -24px rgba(0,0,0,.7); color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--bg)}
+h1,h2,h3{margin:0;text-wrap:balance}
+p{margin:0}
+a{color:inherit;text-decoration:none}
+img{display:block}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+.eyebrow{font-size:.75rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-ink)}
+.serif{font-family:var(--serif);font-weight:400}
+
+/* botões */
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:46px;padding:0 26px;border-radius:999px;font-weight:600;font-size:.9rem;border:0;cursor:pointer;font-family:inherit;transition:transform .25s ease,box-shadow .25s ease,background .25s ease}
+.btn svg{width:16px;height:16px;transition:transform .25s ease}
+.btn:hover svg{transform:translateX(3px)}
+.btn-gold{background:var(--gold);color:#1E2430}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 12px 24px -12px var(--gold)}
+.btn-navy{background:var(--navy);color:var(--on-navy)}
+:root[data-theme="dark"] .btn-navy{background:var(--gold);color:#1E2430}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .btn-navy{background:var(--gold);color:#1E2430}}
+.btn-navy:hover{transform:translateY(-2px);box-shadow:0 12px 24px -14px rgba(0,0,0,.6)}
+.link-line{font-weight:600;font-size:.9rem;min-height:46px;display:inline-flex;align-items:center;background:linear-gradient(currentColor,currentColor) 0 calc(100% - 10px)/100% 1px no-repeat;transition:background-size .3s ease}
+.link-line:hover{background-size:40% 1px}
+
+/* header */
+.site-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;transition:background .3s ease,box-shadow .3s ease}
+.site-header.scrolled{background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
+.site-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-block:20px;transition:padding .3s ease}
+.site-header.scrolled .wrap{padding-block:12px}
+.logo{font-family:var(--serif);font-size:1.75rem;letter-spacing:.06em;line-height:1}
+.logo small{display:block;font-family:var(--sans);font-size:.6rem;letter-spacing:.32em;color:var(--muted);margin-top:4px}
+.menu{display:flex;gap:30px;font-size:.88rem;font-weight:500}
+.menu a{position:relative;padding:6px 0;color:var(--muted);transition:color .2s}
+.menu a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .3s ease}
+.menu a:hover,.menu a.active{color:var(--ink)}
+.menu a:hover::after,.menu a.active::after{transform:scaleX(1)}
+.menu-btn{display:none;width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;align-items:center;justify-content:center}
+.menu-btn svg{width:20px;height:20px}
+
+/* hero */
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;align-items:center;gap:24px;min-height:600px}
+.hero-text{display:grid;gap:30px;padding-block:40px 110px}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.6rem,5.8vw,4.8rem);line-height:1.04;letter-spacing:-.01em}
+.hero h1 em{font-style:italic;color:var(--gold-ink)}
+.hero-text>p{max-width:440px;color:var(--muted);font-size:1.06rem}
+.hero-actions{display:flex;gap:22px;flex-wrap:wrap;align-items:center}
+.hero-trust{display:flex;gap:28px;flex-wrap:wrap;font-size:.85rem;color:var(--muted)}
+.hero-trust span{display:flex;align-items:center;gap:8px}
+.hero-trust svg{width:18px;height:18px;color:var(--gold-ink);flex:none}
+.hero-art{position:relative;align-self:end;height:620px;display:flex;justify-content:center;align-items:flex-end;min-width:0}
+.hero-art .circle{position:absolute;right:-160px;top:110px;width:480px;height:480px;border-radius:50%;background:var(--gold)}
+.hero-art .ring{position:absolute;left:4%;top:180px;width:150px;height:150px;border-radius:50%;border:1px solid var(--gold);opacity:.7}
+.hero-art img{position:relative;height:600px;width:auto;max-width:100%;object-fit:contain;object-position:bottom}
+.vertical{position:absolute;right:0;top:40px;display:flex;flex-direction:column;align-items:center;gap:12px;z-index:2}
+.vertical i{width:6px;height:6px;border-radius:50%;background:var(--ink)}
+.vertical span{writing-mode:vertical-rl;font-family:var(--serif);font-size:.85rem;letter-spacing:.14em;margin-top:6px}
+.badge{position:absolute;left:0;bottom:120px;z-index:2;background:var(--surface);border-radius:14px;padding:14px 18px;box-shadow:var(--shadow);display:flex;gap:12px;align-items:center;font-size:.85rem;line-height:1.35}
+.badge .ic{width:38px;height:38px;border-radius:50%;background:var(--gold);display:grid;place-items:center;color:#1E2430;flex:none}
+.badge .ic svg{width:18px;height:18px}
+.badge b{display:block;font-size:.92rem}
+
+/* áreas */
+.areas{position:relative;margin-top:-64px;z-index:3}
+.areas .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.area{background:var(--surface);border-radius:16px;padding:30px 26px;display:grid;gap:12px;align-content:start;box-shadow:var(--shadow);border:1px solid transparent;transition:transform .35s ease,border-color .35s ease,box-shadow .35s ease;position:relative;overflow:hidden}
+.area::after{content:"";position:absolute;left:26px;right:26px;bottom:0;height:3px;border-radius:3px 3px 0 0;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .4s ease}
+.area:hover{transform:translateY(-6px);border-color:var(--line)}
+.area:hover::after{transform:scaleX(1)}
+.area .ic{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--gold) 16%,transparent);color:var(--gold-ink);transition:background .35s,color .35s}
+.area:hover .ic{background:var(--gold);color:#1E2430}
+.area .ic svg{width:26px;height:26px}
+.area h3{font-size:1.1rem;font-weight:600;margin-top:6px}
+.area p{font-size:.9rem;color:var(--muted)}
+.area a{font-size:.85rem;font-weight:600;color:var(--gold-ink);display:inline-flex;gap:6px;align-items:center;margin-top:4px}
+.area a svg{width:14px;height:14px;transition:transform .25s}
+.area:hover a svg{transform:translateX(4px)}
+
+/* sobre */
+section{padding-block:110px}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.about h2,.sec-title{font-family:var(--serif);font-weight:400;font-size:clamp(2.1rem,3.8vw,3rem);line-height:1.1}
+.about-text{display:grid;gap:22px}
+.about-text>p{color:var(--muted);max-width:540px}
+.values{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:4px}
+.values div{border-top:1px solid var(--line);padding-top:14px;font-size:.88rem;color:var(--muted)}
+.values b{display:block;color:var(--ink);font-size:.95rem;margin-bottom:2px}
+.team{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:12px}
+.member{display:grid;gap:12px}
+.photo{position:relative;aspect-ratio:4/4.5;max-width:100%;border-radius:16px;overflow:hidden;background:var(--bg-2)}
+.photo img{width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.photo::after{content:"";position:absolute;inset:auto 0 0;height:45%;background:linear-gradient(transparent,rgba(20,24,31,.75));opacity:0;transition:opacity .4s}
+.photo .area-tag{position:absolute;left:12px;right:12px;bottom:12px;z-index:1;color:#fff;font-size:.78rem;font-weight:600;opacity:0;transform:translateY(8px);transition:opacity .4s,transform .4s}
+.member:hover .photo img{transform:scale(1.06)}
+.member:hover .photo::after,.member:hover .area-tag{opacity:1;transform:none}
+.member h3{font-size:.98rem;font-weight:600;line-height:1.3}
+.member p{font-size:.84rem;color:var(--muted)}
+
+/* contato */
+.contact-card{position:relative;background:var(--surface);border-radius:20px;padding:14px;box-shadow:var(--shadow)}
+.contact-top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:6px 6px 14px;flex-wrap:wrap}
+.contact-top b{font-size:.9rem}
+.chip{font-size:.75rem;background:var(--navy);color:var(--on-navy);padding:6px 14px;border-radius:999px}
+.map{position:relative;height:460px;border-radius:14px;overflow:hidden;background:#E4E7E2}
+.map svg{width:100%;height:100%;display:block}
+.pin{position:absolute;left:30%;top:22%;display:flex;flex-direction:column;align-items:center}
+.pin span{background:#232B38;color:#fff;font-size:.75rem;font-weight:600;padding:6px 12px;border-radius:999px;white-space:nowrap}
+.pin i{position:relative;width:16px;height:16px;border-radius:50%;background:var(--gold);border:3px solid #fff;margin-top:6px}
+.pin i::before{content:"";position:absolute;inset:-12px;border-radius:50%;border:2px solid var(--gold);animation:pulse 2.2s ease-out infinite}
+@keyframes pulse{from{transform:scale(.4);opacity:.9}to{transform:scale(1.6);opacity:0}}
+.form{position:absolute;right:28px;bottom:28px;width:300px;max-width:calc(100% - 56px);background:var(--surface);border-radius:16px;padding:20px;display:grid;gap:12px;box-shadow:0 20px 40px -18px rgba(20,24,31,.55)}
+.form-head{display:flex;align-items:center;gap:10px}
+.form-head .ic{width:34px;height:34px;border-radius:50%;background:var(--gold);color:#1E2430;display:grid;place-items:center}
+.form-head .ic svg{width:16px;height:16px}
+.form-head b{font-size:1rem}
+.field{display:grid;gap:4px;font-size:.78rem;color:var(--muted);font-weight:500}
+.field input,.field select{font:inherit;font-size:.88rem;color:var(--ink);background:var(--field);border:1px solid var(--line);border-radius:10px;padding:10px 12px;width:100%;transition:border-color .2s,box-shadow .2s}
+.field input:focus,.field select:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px color-mix(in srgb,var(--gold) 25%,transparent)}
+.field.err input{border-color:#C0392B}
+.field .msg{color:#C0392B;font-size:.74rem;display:none}
+.field.err .msg{display:block}
+.form .btn{justify-self:end}
+.sent{display:grid;gap:8px;text-align:center;justify-items:center;padding:12px 4px}
+.sent .ic{width:48px;height:48px;border-radius:50%;background:var(--gold);color:#1E2430;display:grid;place-items:center}
+.sent .ic svg{width:22px;height:22px}
+.sent p{font-size:.86rem;color:var(--muted)}
+.maps-link{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;font-weight:600;color:var(--gold-ink);padding:12px 6px 4px}
+
+/* faixa cta */
+.cta{background:var(--bg-2);padding-block:72px}
+.cta .wrap{display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap}
+.cta h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.8rem,3.2vw,2.5rem);max-width:640px;line-height:1.15}
+.cta h2 em{color:var(--gold-ink)}
+
+/* footer */
+footer{background:var(--navy);color:var(--on-navy)}
+footer .wrap{padding-block:72px 28px;display:grid;gap:52px}
+.f-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr 1.6fr;gap:36px}
+.f-col{display:grid;gap:10px;align-content:start;font-size:.88rem}
+.f-col strong{font-weight:600;margin-bottom:4px}
+.f-col a,.f-col span{color:var(--on-navy-muted);transition:color .2s}
+.f-col a:hover{color:var(--gold)}
+.f-logo{font-family:var(--serif);font-size:1.6rem;letter-spacing:.06em;color:var(--on-navy)}
+.news{background:var(--surface);color:var(--ink);border-radius:16px;padding:22px;display:grid;gap:12px;align-content:start}
+.news b{font-size:.98rem}
+.news p{font-size:.82rem;color:var(--muted)}
+.news-row{display:flex;gap:8px}
+.news-row input{flex:1;min-width:0;font:inherit;font-size:.88rem;color:var(--ink);background:var(--field);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.news-row input:focus{outline:none;border-color:var(--gold)}
+.news-row button{width:46px;height:46px;border:0;border-radius:10px;background:var(--gold);color:#1E2430;cursor:pointer;display:grid;place-items:center;flex:none;transition:transform .2s}
+.news-row button:hover{transform:translateX(3px)}
+.news-row button svg{width:18px;height:18px}
+.news .ok{font-size:.82rem;color:var(--gold-ink);font-weight:600}
+.f-bottom{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.12);padding-top:22px;font-size:.8rem;color:var(--on-navy-muted)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* voltar ao topo */
+.to-top{position:fixed;right:calc(20px + env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:40;width:48px;height:48px;border-radius:50%;border:0;background:var(--navy);color:var(--on-navy);box-shadow:var(--shadow);cursor:pointer;display:grid;place-items:center;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .3s,transform .3s}
+.to-top.show{opacity:1;transform:none;pointer-events:auto}
+.to-top svg{width:18px;height:18px}
+:root[data-theme="dark"] .to-top{background:var(--gold);color:#1E2430}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .to-top{background:var(--gold);color:#1E2430}}
+
+/* entrada do hero (anima a partir de estado visível) */
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes grow{from{transform:scale(.6)}to{transform:none}}
+.hero-text>*{animation:rise .8s cubic-bezier(.2,.7,.2,1) both}
+.hero-text>*:nth-child(2){animation-delay:.1s}
+.hero-text>*:nth-child(3){animation-delay:.2s}
+.hero-text>*:nth-child(4){animation-delay:.3s}
+.hero-text>*:nth-child(5){animation-delay:.4s}
+.hero-art img{animation:rise 1s .15s cubic-bezier(.2,.7,.2,1) both}
+.hero-art .circle{animation:grow 1.2s cubic-bezier(.2,.7,.2,1) both}
+.badge{animation:rise .8s .6s cubic-bezier(.2,.7,.2,1) both}
+/* revelação ao rolar: só onde o navegador suporta, sem esconder nada antes */
+@supports (animation-timeline: view()){
+  .reveal{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 40%}
+}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+
+/* ===== efeitos visuais ===== */
+:root{--shine:#F4E2AE}
+:root[data-theme="dark"]{--shine:#FFF2C9}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--shine:#FFF2C9}}
+
+/* textura de papel sobre a página */
+body::after{content:"";position:fixed;inset:0;z-index:70;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+
+/* barra de progresso da leitura */
+.progress{position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--gold);transform-origin:left;transform:scaleX(var(--p,0));pointer-events:none}
+
+/* cursor dourado (só mouse) */
+.cursor,.cursor-dot{position:fixed;left:0;top:0;z-index:90;pointer-events:none;border-radius:50%;display:none}
+.has-cursor .cursor,.has-cursor .cursor-dot{display:block}
+.cursor{width:38px;height:38px;margin:-19px 0 0 -19px;border:1px solid var(--gold);transition:width .3s,height .3s,margin .3s,background .3s,border-color .3s}
+.cursor.hover{width:70px;height:70px;margin:-35px 0 0 -35px;background:color-mix(in srgb,var(--gold) 14%,transparent);border-color:transparent}
+.cursor-dot{width:6px;height:6px;margin:-3px 0 0 -3px;background:var(--gold)}
+
+/* hero: poeira dourada, parallax, brilho no título */
+.hero{position:relative}
+.dust{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
+.hero-art .circle{translate:calc(var(--mx,0)*-24px) calc(var(--my,0)*-18px);transition:translate .8s cubic-bezier(.2,.7,.2,1)}
+.hero-art .ring{translate:calc(var(--mx,0)*38px) calc(var(--my,0)*30px);transition:translate .8s cubic-bezier(.2,.7,.2,1);border-style:dashed;animation:spin 40s linear infinite}
+.hero-art .ring::after{content:"";position:absolute;top:-5px;left:50%;width:9px;height:9px;margin-left:-4.5px;border-radius:50%;background:var(--gold)}
+.hero-art img{translate:calc(var(--mx,0)*10px) calc(var(--my,0)*6px);transition:translate .8s cubic-bezier(.2,.7,.2,1)}
+.badge{translate:calc(var(--mx,0)*-16px) calc(var(--my,0)*-12px);transition:translate .8s cubic-bezier(.2,.7,.2,1)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero h1 em{position:relative;display:inline-block}
+.shine{background:linear-gradient(100deg,var(--gold-ink) 38%,var(--shine) 50%,var(--gold-ink) 62%) 100% 0/300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 7s 1.6s ease-in-out infinite}
+@keyframes shine{0%{background-position:100% 0}28%,100%{background-position:0 0}}
+.brush{position:absolute;left:-2%;bottom:-.1em;width:104%;height:.3em;overflow:visible}
+.brush path{fill:none;stroke:var(--gold);stroke-width:4;stroke-linecap:round;stroke-dasharray:220;animation:drawline 1.1s 1s cubic-bezier(.6,0,.2,1) both}
+@keyframes drawline{from{stroke-dashoffset:220}to{stroke-dashoffset:0}}
+
+/* botões magnéticos */
+.btn,.to-top{transition:transform .25s ease,box-shadow .25s ease,background .25s ease,translate .35s cubic-bezier(.2,.7,.2,1),opacity .3s}
+
+/* cards com inclinação 3D e luz que segue o mouse */
+.area>*{position:relative}
+.area::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .4s;
+  background:radial-gradient(280px circle at var(--x,50%) var(--y,0%),color-mix(in srgb,var(--gold) 20%,transparent),transparent 70%)}
+.area:hover::before{opacity:1}
+.area.tilting{transition:transform .12s linear,border-color .35s ease,box-shadow .35s ease}
+
+/* faixa corrida de áreas */
+.marquee{overflow:hidden;padding-block:72px 0;--skew:0deg}
+.marquee-inner{transform:skewX(var(--skew))}
+.marquee-track{display:flex;width:max-content;animation:marq 42s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee-group{display:flex;align-items:center}
+.marquee-group span{font-family:var(--serif);font-style:italic;font-size:clamp(2.4rem,6.4vw,5.4rem);line-height:1.1;white-space:nowrap;padding-inline:.35em}
+.marquee-group span.outline{color:transparent;-webkit-text-stroke:1px var(--ink)}
+.marquee-group i{width:14px;height:14px;background:var(--gold);transform:rotate(45deg);flex:none}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+/* equipe: cor ao passar o mouse */
+.photo img{filter:grayscale(.4) contrast(1.03);transition:transform .6s cubic-bezier(.2,.7,.2,1),filter .6s ease}
+.member:hover .photo img{filter:none}
+
+/* balança da justiça na faixa final */
+.cta-main{display:flex;flex-wrap:wrap;align-items:center;gap:28px;min-width:0;flex:1 1 520px}
+.scales{width:112px;height:112px;color:var(--gold-ink);flex:none}
+.scales .beam{transform-origin:60px 30px;transform-box:view-box;animation:swing 5s ease-in-out infinite}
+@keyframes swing{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
+
+/* revelação ao rolar usando translate (transform fica livre para a inclinação dos cards) */
+@keyframes riseT{from{opacity:0;translate:0 26px}to{opacity:1;translate:none}}
+@keyframes draw{from{stroke-dashoffset:300}to{stroke-dashoffset:0}}
+@supports (animation-timeline: view()){
+  .reveal{animation:riseT linear both;animation-timeline:view();animation-range:entry 0% entry 45%}
+  .scales .d{stroke-dasharray:300;animation:draw linear both;animation-timeline:view();animation-range:entry 10% cover 45%}
+}
+
+/* responsivo */
+@media (max-width:1000px){
+  .f-grid{grid-template-columns:1fr 1fr 1fr}
+  .f-grid .f-col:first-child,.news{grid-column:1/-1}
+  .areas .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .about{grid-template-columns:1fr}
+}
+@media (max-width:860px){
+  .menu-btn{display:inline-flex}
+  .menu{position:absolute;left:0;right:0;top:100%;flex-direction:column;gap:0;background:var(--surface);box-shadow:var(--shadow);padding:8px max(24px,env(safe-area-inset-right,0px)) 16px max(24px,env(safe-area-inset-left,0px))}
+  .menu[hidden-mobile]{display:none}
+  .menu a{padding:14px 0;border-bottom:1px solid var(--line);font-size:1rem}
+  .menu a::after{display:none}
+  .head-cta{display:none}
+  .hero .wrap{grid-template-columns:1fr;min-height:0}
+  .hero-text{padding-block:24px 0}
+  .hero-art{height:480px}
+  .hero-art img{height:470px}
+  .hero-art .circle{width:360px;height:360px;right:-120px;top:90px}
+  .badge{bottom:90px}
+  .areas{margin-top:0;padding-top:28px}
+  .map{height:420px}
+}
+@media (max-width:560px){
+  section{padding-block:72px}
+  .areas .wrap,.values{grid-template-columns:1fr}
+  .team{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+  .member h3{font-size:.85rem}
+  .member p{font-size:.75rem}
+  .hero-art{height:400px}
+  .hero-art img{height:390px}
+  .vertical{display:none}
+  .badge{left:0;bottom:60px;padding:10px 14px}
+  .form{position:relative;right:auto;bottom:auto;width:auto;max-width:none;margin-top:12px;box-shadow:none;border:1px solid var(--line)}
+  .map{height:260px}
+  .f-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+
+<header class="site-header" id="topo">
+  <div class="wrap">
+    <a class="logo" href="#inicio">LACERDA<small>ADVOCACIA</small></a>
+    <nav class="menu" id="menu" aria-label="Menu principal">
+      <a href="#inicio">Início</a>
+      <a href="#areas">Áreas</a>
+      <a href="#sobre">Sobre nós</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <div style="display:flex;gap:10px;align-items:center">
+      <a class="btn btn-navy head-cta" href="#contato">Agendar consulta</a>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="progress" aria-hidden="true"></div>
+</header>
+
+<main>
+<section class="hero" id="inicio" style="padding:0">
+  <canvas class="dust" id="dust" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="hero-text">
+      <p class="eyebrow">Advocacia em Cachoeiro de Itapemirim · ES</p>
+      <h1>“Protegendo seus direitos, <em class="shine">cuidando<svg class="brush" viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path d="M4 14C46 6 104 3 196 9"/></svg></em> do seu futuro”</h1>
+      <p>Atendimento próximo para pessoas e empresas do sul do Espírito Santo, com explicações claras em cada etapa do seu caso.</p>
+      <div class="hero-actions">
+        <a class="btn btn-gold" href="#contato">Fale com um advogado
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="link-line" href="#areas">Áreas de atuação</a>
+      </div>
+      <div class="hero-trust">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Retorno em até 1 dia útil</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="13" rx="2"/><path d="M8 21h8"/></svg>Atendimento presencial e online</span>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="circle" aria-hidden="true"></div>
+      <div class="ring" aria-hidden="true"></div>
+      <img src="img/advogado.webp" alt="Rafael Lacerda, advogado sócio do escritório" width="1145" height="1374">
+      <div class="vertical"><i></i><i></i><i></i><span>Cachoeiro de Itapemirim · ES</span></div>
+      <div class="badge">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 3v5c0 4.4-3 8.3-7 9.5C8 19.3 5 15.4 5 11V6z"/><path d="M9.5 12l1.8 1.8 3.4-3.6"/></svg></div>
+        <div><b>Rafael Lacerda</b>Sócio · OAB/ES [REGISTRO]</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="areas" id="areas">
+  <div class="wrap">
+    <article class="area reveal">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.4-3 8.3-7 9.5C8 19.3 5 15.4 5 11V6z"/><path d="M9.5 12l1.8 1.8 3.4-3.6"/></svg></div>
+      <h3>Direito Criminal</h3>
+      <p>Defesa em inquéritos e processos, com acompanhamento em todas as fases.</p>
+      <a href="#contato" data-area="Direito Criminal">Consultar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </article>
+    <article class="area reveal">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="7" r="2.6"/><circle cx="16" cy="7" r="2.6"/><path d="M3.5 19c0-3 2-5.2 4.5-5.2s4 1.6 4 3.6M12 17.4c0-2 1.5-3.6 4-3.6s4.5 2.2 4.5 5.2"/></svg></div>
+      <h3>Direito de Família</h3>
+      <p>Divórcio, guarda, pensão alimentícia, inventário e partilha de bens.</p>
+      <a href="#contato" data-area="Direito de Família">Consultar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </article>
+    <article class="area reveal">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7.5" width="18" height="12" rx="2"/><path d="M9 7.5V5.5a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 15 5.5v2M3 12.5h18"/></svg></div>
+      <h3>Direito Empresarial</h3>
+      <p>Contratos, sociedades e assessoria preventiva para o comércio local.</p>
+      <a href="#contato" data-area="Direito Empresarial">Consultar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </article>
+    <article class="area reveal">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11L12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg></div>
+      <h3>Direito Imobiliário</h3>
+      <p>Compra e venda, usucapião, locação e regularização de imóveis.</p>
+      <a href="#contato" data-area="Direito Imobiliário">Consultar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </article>
+  </div>
+</div>
+
+<div class="marquee" id="marquee" aria-label="Áreas de atuação: Direito Criminal, Direito de Família, Direito Empresarial, Direito Imobiliário">
+  <div class="marquee-inner">
+    <div class="marquee-track">
+      <div class="marquee-group" aria-hidden="true"><span>Direito Criminal</span><i></i><span class="outline">Direito de Família</span><i></i><span>Direito Empresarial</span><i></i><span class="outline">Direito Imobiliário</span><i></i></div>
+      <div class="marquee-group" aria-hidden="true"><span>Direito Criminal</span><i></i><span class="outline">Direito de Família</span><i></i><span>Direito Empresarial</span><i></i><span class="outline">Direito Imobiliário</span><i></i></div>
+    </div>
+  </div>
+</div>
+
+<section id="sobre">
+  <div class="wrap about">
+    <div class="about-text">
+      <p class="eyebrow reveal">Sobre nós</p>
+      <h2 class="reveal">Um escritório que explica, acompanha e responde.</h2>
+      <p class="reveal">Atendemos pessoas e empresas de Cachoeiro de Itapemirim e de todo o sul do Espírito Santo. Cada cliente tem um advogado responsável, que explica as alternativas antes de qualquer decisão e avisa a cada movimentação do processo.</p>
+      <div class="values reveal">
+        <div><b>Clareza</b>Sem juridiquês, do primeiro contato à sentença.</div>
+        <div><b>Proximidade</b>Um advogado responsável pelo seu caso.</div>
+        <div><b>Transparência</b>Honorários combinados por escrito.</div>
+      </div>
+      <div class="team" id="equipe">
+        <figure class="member reveal" style="margin:0">
+          <div class="photo"><img src="img/advogada1.webp" alt="Helena Moraes, advogada" loading="lazy" width="604" height="650"><span class="area-tag">Família e Imobiliário</span></div>
+          <figcaption><h3>Helena Moraes</h3><p>Sócia</p></figcaption>
+        </figure>
+        <figure class="member reveal" style="margin:0">
+          <div class="photo"><img src="img/advogado.webp" alt="Rafael Lacerda, advogado" loading="lazy" width="1145" height="1374"><span class="area-tag">Criminal e Empresarial</span></div>
+          <figcaption><h3>Rafael Lacerda</h3><p>Sócio</p></figcaption>
+        </figure>
+        <figure class="member reveal" style="margin:0">
+          <div class="photo"><img src="img/advogada2.webp" alt="Camila Rangel, advogada" loading="lazy" width="606" height="648"><span class="area-tag">Família e Sucessões</span></div>
+          <figcaption><h3>Camila Rangel</h3><p>Advogada associada</p></figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="contact-card reveal" id="contato">
+      <div class="contact-top"><b>Nosso escritório</b><span class="chip">Centro · Cachoeiro de Itapemirim</span></div>
+      <div class="map" role="img" aria-label="Mapa ilustrativo da localização do escritório">
+        <svg viewBox="0 0 520 460" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="520" height="460" fill="#E4E7E2"/>
+          <path d="M-20 300C80 260 150 360 250 320S430 240 560 280" stroke="#B9D3E3" stroke-width="26" fill="none"/>
+          <path d="M0 100h520M0 200h520M0 400h520M90 0v460M210 0v460M340 0v460M450 0v460" stroke="#FFFFFF" stroke-width="8"/>
+          <path d="M0 40l520 140M60 460L300 0" stroke="#F1D9B5" stroke-width="6"/>
+          <rect x="100" y="112" width="100" height="76" rx="4" fill="#D3DCCF"/>
+          <rect x="352" y="14" width="88" height="76" rx="4" fill="#D3DCCF"/>
+          <rect x="222" y="212" width="106" height="60" rx="4" fill="#D3DCCF"/>
+          <circle cx="400" cy="140" r="26" fill="#CBD8C4"/>
+        </svg>
+        <div class="pin"><span>Lacerda Advocacia</span><i></i></div>
+      </div>
+      <form class="form" id="contactForm" novalidate>
+        <div class="form-head"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v11H8l-4 4z"/></svg></div><b>Fale conosco</b></div>
+        <label class="field" for="c-nome">Nome<input id="c-nome" type="text" autocomplete="name" placeholder="Seu nome"><span class="msg">Informe seu nome.</span></label>
+        <label class="field" for="c-tel">WhatsApp<input id="c-tel" type="tel" inputmode="numeric" autocomplete="tel" placeholder="(28) 90000-0000"><span class="msg">Informe um número com DDD.</span></label>
+        <label class="field" for="c-area">Assunto<select id="c-area"><option>Direito Criminal</option><option>Direito de Família</option><option>Direito Empresarial</option><option>Direito Imobiliário</option><option>Outro assunto</option></select></label>
+        <button class="btn btn-navy" type="submit">Enviar</button>
+      </form>
+      <a class="maps-link" href="https://www.google.com/maps/search/Centro,+Cachoeiro+de+Itapemirim+ES">Abrir no Google Maps
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<div class="cta">
+  <div class="wrap">
+    <div class="cta-main">
+      <svg class="scales" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path class="d" d="M60 18v84M42 104h36M50 104l10-8 10 8"/>
+        <circle class="d" cx="60" cy="14" r="3.5"/>
+        <g class="beam">
+          <path class="d" d="M22 30h76"/>
+          <path class="d" d="M22 30l-12 30M22 30l12 30M98 30l-12 30M98 30l12 30"/>
+          <path class="d" d="M8 60h28a14 8 0 0 1-28 0zM84 60h28a14 8 0 0 1-28 0z"/>
+        </g>
+      </svg>
+      <h2 class="reveal">Tem dúvidas sobre o seu caso? <em>Converse com a gente</em> antes de decidir.</h2>
+    </div>
+    <a class="btn btn-gold reveal" href="#contato">Agendar uma conversa
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div class="f-col">
+        <span class="f-logo">LACERDA</span>
+        <span>Rua [ENDEREÇO], Centro<br>Cachoeiro de Itapemirim · ES</span>
+        <span>(28) [TELEFONE]</span>
+      </div>
+      <div class="f-col"><strong>Áreas</strong><a href="#areas">Criminal</a><a href="#areas">Família</a><a href="#areas">Empresarial</a><a href="#areas">Imobiliário</a></div>
+      <div class="f-col"><strong>Escritório</strong><a href="#sobre">Sobre nós</a><a href="#equipe">Advogados</a><a href="#contato">Contato</a></div>
+      <div class="f-col"><strong>Atendimento</strong><span>Seg. a sex., 8h às 18h</span><span>Presencial e online</span></div>
+      <form class="news" id="newsForm" novalidate>
+        <b>Receba nossos informativos</b>
+        <p>Novidades sobre direitos e mudanças na lei, uma vez por mês.</p>
+        <div class="news-row">
+          <label class="sr" for="news">E-mail</label>
+          <input id="news" type="email" autocomplete="email" placeholder="Seu e-mail">
+          <button type="submit" aria-label="Inscrever"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </div>
+        <span class="ok" id="newsOk" hidden>Inscrição feita. Obrigado!</span>
+      </form>
+    </div>
+    <div class="f-bottom">
+      <span>© 2026 Lacerda Advocacia · OAB/ES [REGISTRO]</span>
+      <span>Site fictício criado para portfólio</span>
+    </div>
+  </div>
+</footer>
+
+<div class="cursor" aria-hidden="true"></div>
+<div class="cursor-dot" aria-hidden="true"></div>
+
+<button class="to-top" id="toTop" type="button" aria-label="Voltar ao topo">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+</button>
+
+<script>
+(function(){
+  const header=document.getElementById('topo'), toTop=document.getElementById('toTop');
+  const onScroll=()=>{const y=scrollY;header.classList.toggle('scrolled',y>10);toTop.classList.toggle('show',y>700);
+    const h=document.documentElement.scrollHeight-innerHeight;header.style.setProperty('--p',h>0?Math.min(1,y/h):0)};
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+  toTop.addEventListener('click',()=>scrollTo({top:0}));
+
+  // menu mobile
+  const menu=document.getElementById('menu'), btn=document.getElementById('menuBtn');
+  const mq=matchMedia('(max-width:860px)');
+  const setMenu=open=>{btn.setAttribute('aria-expanded',open);btn.setAttribute('aria-label',open?'Fechar menu':'Abrir menu');
+    if(mq.matches&&!open)menu.setAttribute('hidden-mobile','');else menu.removeAttribute('hidden-mobile')};
+  setMenu(false);mq.addEventListener('change',()=>setMenu(false));
+  btn.addEventListener('click',()=>setMenu(btn.getAttribute('aria-expanded')!=='true'));
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{if(mq.matches)setMenu(false)}));
+
+  // link ativo conforme a seção
+  const links=[...menu.querySelectorAll('a')];
+  const secs=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+e.target.id))}}),{rootMargin:'-45% 0px -50% 0px'});
+    secs.forEach(s=>io.observe(s));
+  }
+
+  // "Consultar" já escolhe o assunto
+  const sel=document.getElementById('c-area');
+  document.querySelectorAll('[data-area]').forEach(a=>a.addEventListener('click',()=>{sel.value=a.dataset.area}));
+
+  // máscara de telefone
+  const tel=document.getElementById('c-tel');
+  tel.addEventListener('input',()=>{let d=tel.value.replace(/\D/g,'').slice(0,11);
+    tel.value=d.length>6?`(${d.slice(0,2)}) ${d.slice(2,d.length-4)}-${d.slice(-4)}`:d.length>2?`(${d.slice(0,2)}) ${d.slice(2)}`:d});
+
+  // envio do contato
+  const form=document.getElementById('contactForm');
+  form.addEventListener('submit',e=>{
+    e.preventDefault();
+    const nome=document.getElementById('c-nome');
+    const okNome=nome.value.trim().length>1, okTel=tel.value.replace(/\D/g,'').length>=10;
+    nome.parentElement.classList.toggle('err',!okNome);tel.parentElement.classList.toggle('err',!okTel);
+    if(!okNome){nome.focus();return} if(!okTel){tel.focus();return}
+    const primeiro=nome.value.trim().split(' ')[0];
+    form.innerHTML='<div class="sent"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12l5 5 9-10"/></svg></div><b></b><p>Recebemos seu pedido. Um advogado retorna pelo WhatsApp em até 1 dia útil.</p></div>';
+    form.querySelector('b').textContent='Obrigado, '+primeiro+'!';
+  });
+  ['c-nome','c-tel'].forEach(id=>document.getElementById(id).addEventListener('input',e=>e.target.parentElement.classList.remove('err')));
+
+  // newsletter
+  const nf=document.getElementById('newsForm');
+  nf.addEventListener('submit',e=>{e.preventDefault();const i=document.getElementById('news');
+    if(!/^\S+@\S+\.\S+$/.test(i.value)){i.focus();i.style.borderColor='#C0392B';return}
+    i.style.borderColor='';i.value='';document.getElementById('newsOk').hidden=false});
+
+  /* ===== efeitos visuais ===== */
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+  const hero=document.getElementById('inicio');
+
+  // poeira dourada no hero
+  const cv=document.getElementById('dust'),cx=cv.getContext('2d');
+  let W=0,H=0,parts=[],heroVisible=true;
+  const gold=()=>getComputedStyle(document.documentElement).getPropertyValue('--gold').trim()||'#C8A35A';
+  let goldColor=gold();
+  function sizeDust(){const r=hero.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,2);W=r.width;H=r.height;
+    cv.width=W*d;cv.height=H*d;cx.setTransform(d,0,0,d,0,0);
+    const n=Math.round(Math.min(60,W/24));
+    parts=Array.from({length:n},()=>({x:Math.random()*W,y:Math.random()*H,r:.6+Math.random()*1.8,vy:-(.12+Math.random()*.35),vx:(Math.random()-.5)*.15,a:.25+Math.random()*.5,t:Math.random()*6.28}))}
+  function drawDust(step){cx.clearRect(0,0,W,H);cx.fillStyle=goldColor;
+    for(const p of parts){if(step){p.y+=p.vy;p.x+=p.vx+Math.sin(p.t)*.12;p.t+=.02;if(p.y<-6){p.y=H+6;p.x=Math.random()*W}}
+      cx.globalAlpha=p.a*(.55+.45*Math.sin(p.t*1.7));cx.beginPath();cx.arc(p.x,p.y,p.r,0,6.283);cx.fill()}
+    cx.globalAlpha=1}
+  sizeDust();drawDust(false);
+  addEventListener('resize',()=>{sizeDust();drawDust(false)});
+  const themeObs=()=>{goldColor=gold();drawDust(false)};
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change',themeObs);
+  new MutationObserver(themeObs).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+  if('IntersectionObserver' in window)new IntersectionObserver(e=>{heroVisible=e[0].isIntersecting}).observe(hero);
+
+  // parallax do hero acompanhando o mouse
+  if(fine&&!reduce){
+    hero.addEventListener('pointermove',e=>{const r=hero.getBoundingClientRect();
+      hero.style.setProperty('--mx',((e.clientX-r.left)/r.width-.5)*2);hero.style.setProperty('--my',((e.clientY-r.top)/r.height-.5)*2)});
+    hero.addEventListener('pointerleave',()=>{hero.style.setProperty('--mx',0);hero.style.setProperty('--my',0)});
+  }
+
+  // botões magnéticos
+  if(fine&&!reduce)document.querySelectorAll('.btn-gold,.head-cta,.to-top').forEach(b=>{
+    b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect();
+      b.style.translate=`${(e.clientX-r.left-r.width/2)*.22}px ${(e.clientY-r.top-r.height/2)*.3}px`});
+    b.addEventListener('pointerleave',()=>{b.style.translate=''});
+  });
+
+  // cards: inclinação 3D + luz que segue o mouse
+  document.querySelectorAll('.area').forEach(c=>{
+    c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
+      c.style.setProperty('--x',x+'px');c.style.setProperty('--y',y+'px');
+      if(fine&&!reduce){c.classList.add('tilting');
+        c.style.transform=`perspective(900px) rotateX(${(y/r.height-.5)*-9}deg) rotateY(${(x/r.width-.5)*11}deg) translateY(-6px)`}});
+    c.addEventListener('pointerleave',()=>{c.classList.remove('tilting');c.style.transform=''});
+  });
+
+  // cursor dourado
+  const ring=document.querySelector('.cursor'),dot=document.querySelector('.cursor-dot');
+  let mx=-100,my=-100,rx=-100,ry=-100;
+  if(fine&&!reduce){
+    document.documentElement.classList.add('has-cursor');
+    addEventListener('pointermove',e=>{mx=e.clientX;my=e.clientY;dot.style.transform=`translate(${mx}px,${my}px)`});
+    document.addEventListener('pointerover',e=>{ring.classList.toggle('hover',!!e.target.closest('a,button,input,select,label,.area,.member'))});
+    document.addEventListener('pointerleave',()=>{mx=my=-100});
+  }
+
+  // faixa corrida inclina conforme a velocidade da rolagem
+  const marquee=document.getElementById('marquee');
+  let lastY=scrollY,skew=0;
+
+  // um único loop de animação para tudo
+  (function loop(){
+    if(!reduce){
+      if(heroVisible)drawDust(true);
+      const v=scrollY-lastY;lastY=scrollY;
+      skew+=(Math.max(-9,Math.min(9,v*.35))-skew)*.12;
+      marquee.style.setProperty('--skew',skew.toFixed(2)+'deg');
+      if(fine){rx+=(mx-rx)*.18;ry+=(my-ry)*.18;ring.style.transform=`translate(${rx}px,${ry}px)`}
+    }
+    requestAnimationFrame(loop);
+  })();
+})();
+</script>
+
+</body>
+</html>
